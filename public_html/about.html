@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic document setup and metadata -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeonRPM - About</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="css/style.css">
+
+
+  <!-- Custom inline styles for horizontal timeline layout -->
+  <style>
+    .timeline {
+      display: flex;
+      overflow-x: auto;
+      padding: 2rem 0;
+    }
+
+    .timeline-step {
+      flex: 0 0 auto;
+      width: 300px;
+      margin-right: 2rem;
+      border-left: 4px solid #28a745;
+      padding-left: 1rem;
+    }
+
+    .timeline-step h5 {
+      color: #28a745;
+    }
+
+    .btn-outline-success:hover {
+      box-shadow: 0 0 10px #0afc8b;
+      transition: box-shadow 0.5s ease;
+    }
+  </style>
+</head>
+
+<body class="bg-dark text-light">
+
+  <!-- ===================== Navbar ===================== -->
+  <!-- Top navigation bar with brand and page links -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-success">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center text-success" href="index.html">
+        <img src="NEONRPM-Logov2.png" alt="NeonRPM Logo" width="200" height="100" class="me-2">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link text-success" href="catalogue.html">Catalogue</a></li>
+          <li class="nav-item"><a class="nav-link text-success" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link text-success" href="news.html">News</a></li>
+          <li class="nav-item"><a class="nav-link text-success" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link text-success" href="login.html">Logout</a></li>
+          <li class="nav-item"><a class="nav-link text-success" href="user_history.html">User History</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== About Intro Section ===================== -->
+  <!-- Brief description of NeonRPM’s purpose and inspiration -->
+  <section class="container py-5">
+    <h1 class="text-center text-success mb-5">About NeonRPM</h1>
+    <p class="lead text-center">
+      NeonRPM was built with a passion for futuristic vehicles and storytelling.
+      We bring the thrill of Night City's streets into a visual showcase of the most iconic rides from Cyberpunk 2077.
+    </p>
+  </section>
+
+  <!-- ===================== Meet the Team Section ===================== -->
+  <!-- Three profile cards for fictional team members (Muamar, Keo, and V) -->
+  <section class="container py-5">
+    <h2 class="text-success mb-4">Meet the Team</h2>
+    <div class="row g-4">
+
+      <!-- Team Member: Muamar Reyes (El Capitan) -->
+      <div class="col-md-4">
+        <div class="card bg-secondary text-light border border-success h-100">
+          <img src="MuamarReyes.png" class="card-img-top" alt="Muamar Reyes"
+            style="height: 425px; object-fit: cover; object-position: top;">
+          <div class="card-body">
+            <h5 class="card-title">Muamar Reyes (El Capitan)</h5>
+            <p class="card-text">A fixer from Santo Domingo and loyal Night City native, El Capitan connects you with
+              top-tier vehicles and opportunities. Known for his charisma and vast network, he’s the bridge between the
+              underground and the open road.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Member: Keo Jeffrey -->
+      <div class="col-md-4">
+        <div class="card bg-secondary text-light border border-success h-100">
+          <img src="classified.jpg" class="card-img-top" alt="Keo Jeffrey" style="height: 425px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">Keo Jeffrey</h5>
+            <p class="card-text">Founder of NeonRPM and creative behind the concept. Merges cyberpunk aesthetic with
+              immersive user experience to spotlight the vehicles of tomorrow.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Member: V -->
+      <div class="col-md-4">
+        <div class="card bg-secondary text-light border border-success h-100">
+          <img src="v.jpg" class="card-img-top" alt="V" style="height: 425px; object-fit: cover; object-position: top;">
+          <div class="card-body">
+            <h5 class="card-title">V</h5>
+            <p class="card-text">A legendary mercenary and street legend in the making. Known for navigating high-risk
+              gigs with precision, V works as a trusted courier for Muamar Reyes, delivering rare and high-end vehicles
+              across Night City with speed, style, and sometimes firepower.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Timeline Section ===================== -->
+  <!-- Horizontally scrolling timeline showing NeonRPM’s fictional history -->
+  <section class="container py-5">
+    <h2 class="text-success mb-4">Our Journey</h2>
+    <div class="timeline">
+      <div class="timeline-step">
+        <h5>2070 – Ignition Begins</h5>
+        <p>NeonRPM is founded in Santo Domingo as an underground tuner shop by a former netrunner and rogue fixer.</p>
+      </div>
+      <div class="timeline-step">
+        <h5>2072 – On the Map</h5>
+        <p>NeonRPM gains legal standing through alliances with mid-tier fixers, becoming corp-neutral and publicly
+          operational.</p>
+      </div>
+      <div class="timeline-step">
+        <h5>2073 – Net Launch</h5>
+        <p>Launch of the first interactive web-holo showroom accessible via the Net. Sales spike city-wide.</p>
+      </div>
+      <div class="timeline-step">
+        <h5>2075 – Corporate Clash</h5>
+        <p>Arasaka attempts to breach NeonRPM systems. Survived by strong netrunner fortification. Gains street cred.
+        </p>
+      </div>
+      <div class="timeline-step">
+        <h5>2076 – Expansion</h5>
+        <p>Second location opens in Pacifica to serve mercs and outlaws. Offers exclusive edgerunner mods.</p>
+      </div>
+      <div class="timeline-step">
+        <h5>2077 – Hub of Night City</h5>
+        <p>NeonRPM recognized by Afterlife fixers as the #1 independent auto dealer in Night City.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Top Button -->
+  <button onclick="scrollToTop()" id="backToTopBtn" class="btn btn-success position-fixed bottom-0 end-0 m-4"
+    style="display: none; z-index: 999;">
+    Top of Page
+  </button>
+
+
+  <!-- ===================== Footer ===================== -->
+  <!-- Footer content with standard copyright -->
+  <footer class="bg-dark text-center py-4 border-top border-success mt-5">
+    <p class="mb-0">&copy; 2025 NeonRPM. Powered by Night City.</p>
+    <p class="mb-1">Contact: <a href="mailto:contact@neonrpm.cy" class="text-success">contact@neonrpm.cy</a></p>
+    <p class="mb-1">Last updated: <span id="lastUpdated"></span></p>
+    <hr>
+    <p class="mb-1">
+      <a href="index.html" class="text-success">Home</a> |
+      <a href="catalogue.html" class="text-success">Catalogue</a> |
+      <a href="about.html" class="text-success">About</a> |
+      <a href="news.html" class="text-success">News</a> |
+      <a href="contact.html" class="text-success">Contact</a>
+    </p>
+  </footer>
+
+
+  <!-- Bootstrap JS Bundle -->
+  <script crossorigin="anonymous" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Shared last updated script -->
+  <script src="FooterDate.js"></script>
+
+</body>
+
+</html>

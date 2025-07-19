@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic document setup and metadata -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeonRPM - Catalogue</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Custom Inline CSS elements -->
+    <style>
+        .btn-outline-success:hover {
+            box-shadow: 0 0 10px #0afc8b;
+            transition: box-shadow 0.5s ease;
+        }
+
+        .vehicle-card {
+            transition: opacity 0.4s ease, transform 0.3s ease;
+        }
+    
+        .vehicle-card.fade-out {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="bg-dark text-light">
+
+    <!-- ===================== Navbar ===================== -->
+    <!-- Top navigation bar with brand and page links -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-success">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center text-success" href="index.html">
+                <img src="NEONRPM-Logov2.png" alt="NeonRPM Logo" width="200" height="100" class="me-2">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-success" href="catalogue.html">Catalogue</a></li>
+                    <li class="nav-item"><a class="nav-link text-success" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-success" href="news.html">News</a></li>
+                    <li class="nav-item"><a class="nav-link text-success" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link text-success" href="login.html">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link text-success" href="user_history.html">User History</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===================== Page Header ===================== -->
+    <!-- Title and brief intro for the catalogue page -->
+    <header class="container py-5 text-center">
+        <h1 class="display-4 text-success fw-bold">Vehicle Catalogue</h1>
+        <p class="lead">Browse categories below to explore available vehicles from Night City.</p>
+    </header>
+
+    <!-- ===================== Search Bar ===================== -->
+    <!-- Input field that will filter visible vehicle cards using JavaScript -->
+    <section class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="searchInput"
+                    placeholder="Search vehicles by name or model...">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== Vehicle Listings ===================== -->
+    <!-- Each section below groups vehicles by category -->
+    <section class="container pb-5">
+
+        <!-- ===== SPORT CARS ===== -->
+        <h2 class="text-success mb-4" id="sport-cars">Sport Cars</h2>
+        <div class="row g-4 mb-5">
+            <!-- Each card below represents a vehicle. These are filterable by the search bar. -->
+            <div class="col-md-4 vehicle-card">
+                <div class="card bg-secondary text-light border border-success h-100">
+                    <img src="911Car.jpg" class="card-img-top" alt="911 Turbo"
+                        style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">911 II (930) Turbo</h5>
+                        <p class="card-text">Classic speed with Cyberpunk flair.</p>
+                        <a href="vehicle_detail_911_turbo.html" class="btn btn-outline-success mt-auto">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 vehicle-card">
+                <div class="card bg-secondary text-light border border-success h-100">
+                    <img src="cthulhu.jpg" class="card-img-top" alt="Cthulhu" style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title ">Quadra Type-66 Cthulhu</h5>
+                        <p class="card-text">Muscle meets menace — drive the legend.</p>
+                        <a href="vehicle_detail_cthulhu.html" class="btn btn-outline-success mt-auto">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 vehicle-card">
+                <div class="card bg-secondary text-light border border-success h-100">
+                    <img src="shionmz2.jpg" class="card-img-top" alt="Shion MZ2"
+                        style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Mizutani Shion MZ2</h5>
+                        <p class="card-text">Razor-sharp handling, street-racing favorite.</p>
+                        <a href="vehicle_detail_shion_mz2.html" class="btn btn-outline-success mt-auto">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== MOTORCYCLES ===== -->
+        <h2 class="text-success mb-4" id="motorcycles">Motorcycles</h2>
+        <div class="row g-4 mb-5">
+            <!-- Each of these cards is a unique motorcycle model -->
+            <div class="col-md-4 vehicle-card">
+                <div class="card bg-secondary text-light border border-success h-100">
+                    <img src="kusanagi.jpg" class="card-img-top" alt="Yaiba Kusanagi CT-3X"
+                        style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Yaiba Kusanagi CT-3X</h5>
+                        <p class="card-text">Fastest bike on Night City streets.</p>
+                        <a href="vehicle_detail_kusanagi.html" class="btn btn-outline-success mt-auto">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 vehicle-card">
+                <div class="card bg-secondary text-light border border-success h-100">
+                    <img src="arch.jpg" class="card-img-top" alt="Arch Nazare"
+                        style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Arch Nazare</h5>
+                        <p class="card-text">Iconic cyberbike built for V.</p>
+                        <a href="vehicle_detail_nazare.html" class="btn btn-outline-success mt-auto">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 vehicle-card">
+                <div class="card bg-secondary text-light border border-success h-100">
+                    <img src="scorpion.jpg" class="card-img-top" alt="Apollo Scorpion"
+                        style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Brennan Apollo Scorpion</h5>
+                        <p class="card-text">Desert-built and rebel-driven bike from the Badlands.</p>
+                        <a href="vehicle_detail_scorpion.html" class="btn btn-outline-success mt-auto">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== LUXURY VEHICLES ===== -->
+        <h2 class="text-success mb-4" id="luxury">Luxury Vehicles</h2>
+        <div class="row g-4 mb-5">
+            <div class="col-md-4 vehicle-card">
+                <div class="card bg-secondary text-light border border-success h-100">
+                    <img src="caliburn.jpg" class="card-img-top" alt="Caliburn"
+                        style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Rayfield Caliburn</h5>
+                        <p class="card-text">Ultra-luxury hypercar with peak performance.</p>
+                        <a href="vehicle_detail_caliburn.html" class="btn btn-outline-success mt-auto">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 vehicle-card">
+                <div class="card bg-secondary text-light border border-success h-100">
+                    <img src="thrax.jpg" class="card-img-top" alt="Villefort Alvarado"
+                        style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Villefort Alvarado V4F 570</h5>
+                        <p class="card-text">Corporate luxury armored sedan.</p>
+                        <a href="vehicle_detail_thrax.html" class="btn btn-outline-success mt-auto">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 vehicle-card">
+                <div class="card bg-secondary text-light border border-success h-100">
+                    <img src="aerondight.jpg" class="card-img-top" alt="Rayfield Aerondight"
+                        style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Rayfield Aerondight S9</h5>
+                        <p class="card-text">Top-tier corpo elite luxury on wheels.</p>
+                        <a href="vehicle_detail_aerondight.html" class="btn btn-outline-success mt-auto">View
+                            Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== OFF-ROAD VEHICLES ===== -->
+        <h2 class="text-success mb-4" id="offroad">Off-Road Vehicles</h2>
+        <div class="row g-4 mb-5">
+            <div class="col-md-4 vehicle-card">
+                <div class="card bg-secondary text-light border border-success h-100">
+                    <img src="colby.jpg" class="card-img-top" alt="Thorton Colby CX410-B"
+                        style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Thorton Colby CX410-B</h5>
+                        <p class="card-text">Nomad-tested, rugged, and reliable.</p>
+                        <a href="vehicle_detail_colby.html" class="btn btn-outline-success mt-auto">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 vehicle-card">
+                <div class="card bg-secondary text-light border border-success h-100">
+                    <img src="mackinaw.jpg" class="card-img-top" alt="Mackinaw Beast"
+                        style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Thorton Mackinaw \"Beast\"</h5>
+                        <p class="card-text">Panam's custom modded tank of a truck.</p>
+                        <a href="vehicle_detail_mackinaw.html" class="btn btn-outline-success mt-auto">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 vehicle-card">
+                <div class="card bg-secondary text-light border border-success h-100">
+                    <img src="sidewinder.jpg" class="card-img-top" alt="Quartz Sidewinder"
+                        style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Chevillon Quartz Sidewinder</h5>
+                        <p class="card-text">A tough off-roader engineered for the nomad life.</p>
+                        <a href="vehicle_detail_sidewinder.html" class="btn btn-outline-success mt-auto">View
+                            Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button onclick="scrollToTop()" id="backToTopBtn" class="btn btn-success position-fixed bottom-0 end-0 m-4"
+        style="display: none; z-index: 999;">
+        Top of Page
+    </button>
+
+    <!-- ===================== Footer ===================== -->
+    <!-- Footer content with standard copyright -->
+    <footer class="bg-dark text-center py-4 border-top border-success mt-5">
+        <p class="mb-0">&copy; 2025 NeonRPM. Powered by Night City.</p>
+        <p class="mb-1">Contact: <a href="mailto:contact@neonrpm.cy" class="text-success">contact@neonrpm.cy</a></p>
+        <p class="mb-1">Last updated: <span id="lastUpdated"></span></p>
+        <hr>
+        <p class="mb-1">
+            <a href="index.html" class="text-success">Home</a> |
+            <a href="catalogue.html" class="text-success">Catalogue</a> |
+            <a href="about.html" class="text-success">About</a> |
+            <a href="news.html" class="text-success">News</a> |
+            <a href="contact.html" class="text-success">Contact</a>
+          </p>
+    </footer>
+
+    <!-- ===================== Search Script ===================== -->
+    <!-- Filters vehicle cards live based on user input -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchInput = document.getElementById("searchInput");
+            const cards = document.querySelectorAll(".vehicle-card");
+            
+            // Makes input text to lowercase so that we can match it to other lowercase text
+            searchInput.addEventListener("input", function () {
+                const query = searchInput.value.toLowerCase();
+                // Makes all words in cards lowercase
+                cards.forEach(card => {
+                    const title = card.querySelector(".card-title").textContent.toLowerCase();
+                    const description = card.querySelector(".card-text").textContent.toLowerCase();
+                    
+                    // Checks for match against title or description
+                    const match = title.includes(query) || description.includes(query);
+    
+                    if (match) {
+                        // Shows card smoothly if it was hidden
+                        card.classList.remove("fade-out");
+                        card.style.display = "block";
+                    } else {
+                        // Fades out before hiding
+                        if (!card.classList.contains("fade-out")) {
+                            card.classList.add("fade-out");
+                            setTimeout(() => {
+                                card.style.display = "none";
+                            }, 400); // Waits for transition
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    
+
+    <!-- Bootstrap JS Bundle -->
+    <script crossorigin="anonymous" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Shared last updated script -->
+    <script src="FooterDate.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic document setup and metadata -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeonRPM - Contact</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Custom Inline CSS elements -->
+  <style>
+    .btn-primary:hover {
+      box-shadow: 0 0 10px #0afc8b;
+      transition: box-shadow 0.5s ease;
+    }
+  </style>
+
+</head>
+
+<body class="bg-dark text-light">
+
+    <!-- ===================== Navbar ===================== -->
+    <!-- Top navigation bar with brand and page links -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-success">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center text-success" href="index.html">
+                <img src="NEONRPM-Logov2.png" alt="NeonRPM Logo" width="200" height="100" class="me-2">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-success" href="catalogue.html">Catalogue</a></li>
+                    <li class="nav-item"><a class="nav-link text-success" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-success" href="news.html">News</a></li>
+                    <li class="nav-item"><a class="nav-link text-success" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link text-success" href="login.html">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link text-success" href="user_history.html">User History</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+  <!-- ===================== Contact Page ===================== -->
+  <section class="container py-5">
+    <!-- Page title -->
+    <h1 class="text-success text-center mb-5">Contact Us</h1>
+
+    <!-- ========== Location Information Block ========== -->
+    <!-- Displays static image (map) and general description -->
+    <div class="bg-secondary p-4 rounded mb-4 border border-success">
+      <h4 class="text-center text-light mb-3">Location</h4>
+      <div class="row g-3">
+        <!-- Map image -->
+        <div class="col-md-6">
+          <img src="map.png" class="img-fluid rounded border border-light" alt="Cyberpunk Map Screenshot">
+        </div>
+        <!-- Description text -->
+        <div class="col-md-6">
+          <p>
+            Our main hub is located in the heart of Santo Domingo, Night City.
+            Surrounded by chrome towers and fixers, our garage is fully loaded
+            and ready to supply you with the finest rides across the city grid.
+          </p>
+          <hr>
+          <p>
+            <strong>Address:</strong> Sector 7, Santo Domingo<br>
+            Night City, NC 77-2077
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== Store Hours and Contact Info ========== -->
+    <!-- Four-column layout showing store and contact information -->
+    <div class="bg-secondary p-4 rounded mb-4 border border-success">
+      <h4 class="text-center text-light mb-4">Store Hours / Contact Details</h4>
+      <div class="row">
+        <!-- Email -->
+        <div class="col-md-3">
+          <ul class="list-unstyled">
+            <li><strong>Email:</strong> <a href="mailto:contact@neonrpm.cy" class="text-success">contact@neonrpm.cy</a>
+            </li>
+          </ul>
+        </div>
+        <!-- Hours -->
+        <div class="col-md-3">
+          <ul class="list-unstyled">
+            <li><strong>Hours:</strong> Mon–Sat, 10:00 – 22:00</li>
+          </ul>
+        </div>
+        <!-- Phone -->
+        <div class="col-md-3">
+          <ul class="list-unstyled">
+            <li><strong>Phone:</strong> +77 2077 420 999</li>
+          </ul>
+        </div>
+        <!-- Fixer Hotline -->
+        <div class="col-md-3">
+          <ul class="list-unstyled">
+            <li><strong>Fixer Hotline:</strong> +77 2077 42FIX</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== Submit Query Button ========== -->
+    <!-- Redirects users to the dedicated query form page -->
+    <div class="text-center mt-5">
+      <h5 class="text-light mb-3">Submit a Query</h5>
+      <a href="query.html" class="btn btn-primary px-4 py-2">Form</a>
+    </div>
+  </section>
+
+  <!-- Back to Top Button -->
+  <button onclick="scrollToTop()" id="backToTopBtn" class="btn btn-success position-fixed bottom-0 end-0 m-4"
+    style="display: none; z-index: 999;">
+    Top of Page
+  </button>
+
+  <!-- ===================== Footer ===================== -->
+  <!-- Footer content with standard copyright -->
+  <footer class="bg-dark text-center py-4 border-top border-success mt-5">
+    <p class="mb-1">&copy; 2025 NeonRPM. Powered by Night City.</p>
+    <p class="mb-1">Contact: <a href="mailto:contact@neonrpm.cy" class="text-success">contact@neonrpm.cy</a></p>
+    <p class="mb-1">Last updated: <span id="lastUpdated"></span></p>
+    <hr>
+    <p class="mb-1">
+      <a href="index.html" class="text-success">Home</a> |
+      <a href="catalogue.html" class="text-success">Catalogue</a> |
+      <a href="about.html" class="text-success">About</a> |
+      <a href="news.html" class="text-success">News</a> |
+      <a href="contact.html" class="text-success">Contact</a>
+    </p>
+  </footer>
+
+
+  <!-- Bootstrap JS Bundle -->
+  <script crossorigin="anonymous" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Shared last updated script -->
+  <script src="FooterDate.js"></script>
+</body>
+
+</html>
