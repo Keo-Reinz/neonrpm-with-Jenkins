@@ -61,13 +61,33 @@ pipeline {
       steps {
         echo "Checking if app is healthy"
         bat """
-        REM Wait a few seconds to let the container start
-        timeout /t 5 >nul
-
-        REM Check the /health endpoint
+        REM Run health check
         curl http://localhost:3000/health || exit 1
         """
       }
+      post {
+        success {
+          withCredentials([string(credentialsId: 'discord-webhook', variable: 'DISCORD_URL')]) {
+            bat """
+            curl -H "Content-Type: application/json" ^
+                 -X POST ^
+                 -d "{\\"content\\": \\"NeonRPM Monitoring PASSED — app is healthy at ${env.BUILD_URL}\\"}" ^
+                 %DISCORD_URL%
+            """
+          }
+        }
+        failure {
+          withCredentials([string(credentialsId: 'discord-webhook', variable: 'DISCORD_URL')]) {
+            bat """
+            curl -H "Content-Type: application/json" ^
+                 -X POST ^
+                 -d "{\\"content\\": \\"NeonRPM Monitoring FAILED at ${env.BUILD_URL} — health check did not pass.\\"}" ^
+                 %DISCORD_URL%
+            """
+            }
+        }
     }
+}
+
   }
 }
