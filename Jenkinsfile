@@ -16,8 +16,8 @@ pipeline {
 
     stage('Test') {
       steps {
-        echo 'Running tests (placeholder - add Jest later)'
-        // bat 'npm test'
+        echo 'Running tests'
+        bat 'npm test'
       }
     }
 
