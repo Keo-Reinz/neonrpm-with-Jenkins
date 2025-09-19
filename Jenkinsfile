@@ -12,6 +12,7 @@ pipeline {
       steps {
         echo "Building Docker image (artifact)"
         bat """
+        docker logout
         docker build -t neonrpm-app .
         """
       }
