@@ -39,11 +39,24 @@ pipeline {
       steps {
         echo "=============================="
         echo " STAGE: Code Quality "
-        echo " Running ESLint or SonarQube scan (placeholder) "
+        echo " Running SonarCloud static analysis "
         echo "=============================="
-        // bat 'npx eslint .'
+        withCredentials([string(credentialsId: 'SONAR_TOKEN_NEONRPM', variable: 'SONAR_TOKEN')]) {
+          script {
+            def scannerHome = tool name: 'SonarQube Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+    
+            bat """
+              "${scannerHome}\\bin\\sonar-scanner.bat" ^
+                -Dsonar.projectKey=keo-reinz_neonrpm-with-Jenkins ^
+                -Dsonar.organization=keo-reinz ^
+                -Dsonar.host.url=https://sonarcloud.io ^
+                -Dsonar.login=%SONAR_TOKEN%
+            """
+          }
+        }
       }
     }
+
 
     stage('Security Scan') {
       steps {
