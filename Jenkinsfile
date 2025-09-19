@@ -69,7 +69,7 @@ pipeline {
         success {
           withCredentials([string(credentialsId: 'discord-webhook', variable: 'DISCORD_URL')]) {
             bat """
-            curl -H "Content-Type: application/json" ^
+            curl -k -H "Content-Type: application/json" ^
                  -X POST ^
                  -d "{\\"content\\": \\"NeonRPM Monitoring PASSED — app is healthy at ${env.BUILD_URL}\\"}" ^
                  %DISCORD_URL%
@@ -79,15 +79,12 @@ pipeline {
         failure {
           withCredentials([string(credentialsId: 'discord-webhook', variable: 'DISCORD_URL')]) {
             bat """
-            curl -H "Content-Type: application/json" ^
+            curl -k -H "Content-Type: application/json" ^
                  -X POST ^
                  -d "{\\"content\\": \\"NeonRPM Monitoring FAILED at ${env.BUILD_URL} — health check did not pass.\\"}" ^
                  %DISCORD_URL%
             """
-            }
-        }
-    }
-}
-
-  }
+         }
+      }
+   }
 }
