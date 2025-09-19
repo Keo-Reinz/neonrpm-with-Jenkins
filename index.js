@@ -182,14 +182,39 @@ app.post('/register', (req, res) => {
 // ==================== Health Check Route ====================
 app.get('/health', (req, res) => res.status(200).send('ok'));
 
+// ==================== Prometheus Metrics ====================
+const client = require('prom-client');
+const collectDefaultMetrics = client.collectDefaultMetrics;
+
+// Collect Node.js and system metrics every 5s
+collectDefaultMetrics({ register: client.register });
+
+// Example custom counter: counts login attempts
+const loginCounter = new client.Counter({
+  name: 'neonrpm_logins_total',
+  help: 'Total number of login attempts'
+});
+
+// Increment counter in login route
+app.post('/login', (req, res, next) => {
+  loginCounter.inc();
+  next(); // allow original login logic to run
+});
+
+// Expose /metrics endpoint
+app.get('/metrics', async (req, res) => {
+  res.set('Content-Type', client.register.contentType);
+  res.end(await client.register.metrics());
+});
 
 // ==================== Start Server ====================
-// Only start the server if this file is run directly (not when imported by tests)
 if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`Notif: NeonRPM server running at http://localhost:${PORT}`);
+    console.log(`Notif: Prometheus metrics at http://localhost:${PORT}/metrics`);
   });
 }
 
 module.exports = app; // Export app for testing
+
 
