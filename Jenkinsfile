@@ -38,9 +38,16 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        echo 'Deploy stage placeholder - e.g., Docker or server deployment'
+        echo "Building and running Docker container"
+        bat """
+        docker build -t neonrpm-app .
+        docker stop neonrpm-app || true
+        docker rm neonrpm-app || true
+        docker run -d -p 3000:3000 --name neonrpm-app neonrpm-app
+        """
       }
     }
+
 
     stage('Monitoring') {
       steps {
