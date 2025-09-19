@@ -84,8 +84,9 @@ pipeline {
                  -d "{\\"content\\": \\"NeonRPM Monitoring FAILED at ${env.BUILD_URL} — health check did not pass.\\"}" ^
                  %DISCORD_URL%
             """
-            }
-         }
+          }
+        }
       }
-   }
+    }    
+  }
 }
