@@ -179,8 +179,17 @@ app.post('/register', (req, res) => {
   });
 });
 
+// ==================== Health Check Route ====================
+app.get('/health', (req, res) => res.status(200).send('ok'));
+
 
 // ==================== Start Server ====================
-app.listen(PORT, () => {
-  console.log(`Notif: NeonRPM server running at http://localhost:${PORT}`);
-});
+// Only start the server if this file is run directly (not when imported by tests)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Notif: NeonRPM server running at http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app; // Export app for testing
+
