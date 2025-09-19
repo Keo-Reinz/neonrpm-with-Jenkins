@@ -8,7 +8,7 @@ let report = `# Security Audit Report\n\n`;
 report += `Generated on: ${new Date().toLocaleString()}\n\n`;
 
 if (Object.keys(vulns).length === 0) {
-  report += `✅ No vulnerabilities found.\n`;
+  report += `No vulnerabilities found.\n`;
 } else {
   for (const [pkg, vuln] of Object.entries(vulns)) {
     report += `## Package: ${pkg}\n`;
@@ -20,4 +20,4 @@ if (Object.keys(vulns).length === 0) {
 }
 
 fs.writeFileSync('security-report.md', report);
-console.log("✅ Security report generated: security-report.md");
+console.log("Security report generated: security-report.md");
