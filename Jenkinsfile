@@ -71,7 +71,7 @@ pipeline {
             bat """
             curl -k -H "Content-Type: application/json" ^
                  -X POST ^
-                 -d "{\\"content\\": \\"NeonRPM Monitoring PASSED — app is healthy at ${env.BUILD_URL}\\"}" ^
+                 -d "{\\"content\\": \\"NeonRPM Monitoring PASSED, app is healthy at ${env.BUILD_URL}\\"}" ^
                  %DISCORD_URL%
             """
           }
@@ -81,7 +81,7 @@ pipeline {
             bat """
             curl -k -H "Content-Type: application/json" ^
                  -X POST ^
-                 -d "{\\"content\\": \\"NeonRPM Monitoring FAILED at ${env.BUILD_URL} — health check did not pass.\\"}" ^
+                 -d "{\\"content\\": \\"NeonRPM Monitoring FAILED at ${env.BUILD_URL}, health check did not pass.\\"}" ^
                  %DISCORD_URL%
             """
           }
