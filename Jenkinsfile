@@ -10,7 +10,10 @@ pipeline {
 
     stage('Build') {
       steps {
-        echo 'Build stage placeholder - no build required for this app'
+        echo "Building Docker image (artifact)"
+        bat """
+        docker build -t neonrpm-app .
+        """
       }
     }
 
@@ -35,14 +38,10 @@ pipeline {
       }
     }
 
-
     stage('Deploy') {
       steps {
-        echo "Building and running Docker container"
+        echo "Deploying Docker container"
         bat """
-        REM Build Docker image
-        docker build -t neonrpm-app .
-
         REM Stop container if running
         docker ps -q -f name=neonrpm-app >nul && docker stop neonrpm-app
 
@@ -59,16 +58,20 @@ pipeline {
       steps {
         echo "Pushing Docker image to Docker Hub"
         withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-            bat """
-            docker login -u %DOCKER_USER% -p %DOCKER_PASS%
-            docker tag neonrpm-app keoreinz/neonrpm-app:latest
-            docker push keoreinz/neonrpm-app:latest
-            """
-          }
+          bat """
+          docker login -u %DOCKER_USER% -p %DOCKER_PASS%
+            
+          REM Tag with 'latest'
+          docker tag neonrpm-app %DOCKER_USER%/neonrpm-app:latest
+          docker push %DOCKER_USER%/neonrpm-app:latest
+            
+          REM Tag with Jenkins build number
+          docker tag neonrpm-app %DOCKER_USER%/neonrpm-app:%BUILD_NUMBER%
+          docker push %DOCKER_USER%/neonrpm-app:%BUILD_NUMBER%
+          """
         }
       }
-
-
+    }
 
 
     stage('Monitoring') {
@@ -101,6 +104,6 @@ pipeline {
           }
         }
       }
-    }    
+    }
   }
 }
