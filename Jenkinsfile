@@ -10,13 +10,41 @@ pipeline {
 
     stage('Build') {
       steps {
-        echo 'No build step needed for this app'
+        echo 'Build stage placeholder - no build required for this app'
       }
     }
 
-    stage('Run App') {
+    stage('Test') {
       steps {
-        bat 'npm run start'
+        echo 'Running tests (placeholder - add Jest later)'
+        // bat 'npm test'
+      }
+    }
+
+    stage('Code Quality') {
+      steps {
+        echo 'Running ESLint or SonarQube analysis (placeholder)'
+        // bat 'npx eslint .'
+      }
+    }
+
+    stage('Security Scan') {
+      steps {
+        echo 'Running npm audit (placeholder)'
+        // bat 'npm audit --json > audit-report.json || exit 0'
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        echo 'Deploy stage placeholder - e.g., Docker or server deployment'
+      }
+    }
+
+    stage('Monitoring') {
+      steps {
+        echo 'Monitoring stage placeholder - e.g., curl health check'
+        // bat 'curl http://localhost:3000/index.html'
       }
     }
   }
