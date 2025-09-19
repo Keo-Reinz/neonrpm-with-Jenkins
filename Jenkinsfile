@@ -30,8 +30,8 @@ pipeline {
 
     stage('Security Scan') {
       steps {
-        echo 'Running npm audit (placeholder)'
-        // bat 'npm audit --json > audit-report.json || exit 0'
+        echo 'Running npm audit'
+        bat 'npm audit --json > audit-report.json || exit 0'
       }
     }
 
