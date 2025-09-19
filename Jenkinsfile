@@ -30,10 +30,11 @@ pipeline {
 
     stage('Security Scan') {
       steps {
-        echo 'Running npm audit'
         bat 'npm audit --json > audit-report.json || exit 0'
+        bat 'node scripts/format-audit.js'
       }
     }
+
 
     stage('Deploy') {
       steps {
