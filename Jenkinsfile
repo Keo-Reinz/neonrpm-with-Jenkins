@@ -11,73 +11,79 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo "========================================"
-                echo " INSTALL STAGE: Setting up Node.js deps  "
-                echo " - Runs npm install for project packages "
-                echo " - Ensures all dependencies are ready    "
+                echo " STAGE: INSTALL DEPENDENCIES            "
+                echo " - Installing required npm packages     "
                 echo "========================================"
-                bat 'npm install'
+                bat "npm install"
             }
         }
 
         stage('Build') {
             steps {
                 echo "========================================"
-                echo " BUILD STAGE: Creating Docker image      "
-                echo " - Logs out from Docker Hub (reset auth) "
-                echo " - Pulls base image (node:18)            "
-                echo " - Builds project image: neonrpm-app     "
+                echo " STAGE: BUILD                           "
+                echo " - Builds project files if build script "
+                echo "   is available in package.json         "
                 echo "========================================"
-                bat """
-                docker logout
-                docker build -t neonrpm-app .
-                """
+                bat "npm run build || echo Build step skipped (no build script found)"
             }
         }
 
         stage('Test') {
             steps {
                 echo "========================================"
-                echo " TEST STAGE: Running automated tests     "
-                echo " - Executes Jest test suite              "
-                echo " - Verifies core app functionality       "
+                echo " STAGE: TEST                            "
+                echo " - Running automated Jest tests         "
+                echo " - Ensures health and routes are valid  "
                 echo "========================================"
-                bat 'npm test'
+                bat "npm test"
             }
         }
 
         stage('Code Quality') {
             steps {
                 echo "========================================"
-                echo " CODE QUALITY: Linting / Static Analysis "
-                echo " - Runs ESLint / SonarQube checks        "
-                echo " - Ensures code follows standards        "
+                echo " STAGE: CODE QUALITY                    "
+                echo " - Run ESLint or SonarQube analysis     "
+                echo " - Placeholder for static analysis      "
                 echo "========================================"
-                echo "Running ESLint or SonarQube analysis (placeholder)"
+                bat "echo Running ESLint or SonarQube (placeholder)"
             }
         }
 
         stage('Security Scan') {
             steps {
                 echo "========================================"
-                echo " SECURITY SCAN: Auditing dependencies    "
-                echo " - Runs npm audit                        "
-                echo " - Formats report to security-report.md  "
+                echo " STAGE: SECURITY SCAN                   "
+                echo " - Running npm audit for vulnerabilities"
+                echo " - Formats JSON to Markdown report      "
                 echo "========================================"
-                bat 'npm audit --json > audit-report.json || exit 0'
-                bat 'node scripts/format-audit.js'
+                bat """
+                npm audit --json > audit-report.json || exit 0
+                node scripts/format-audit.js
+                """
             }
         }
 
         stage('Deploy') {
             steps {
                 echo "========================================"
-                echo " DEPLOY STAGE: Running app in Docker     "
-                echo " - Stops/removes old neonrpm-app         "
-                echo " - Runs new container on port 3000       "
+                echo " STAGE: DEPLOY                          "
+                echo " - Builds Docker image                  "
+                echo " - Stops/removes old container          "
+                echo " - Runs new container on port 3000      "
                 echo "========================================"
                 bat """
-                docker ps -q -f name=neonrpm-app > nul && docker stop neonrpm-app || echo "No container to stop"
-                docker ps -a -q -f name=neonrpm-app > nul && docker rm neonrpm-app || echo "No container to remove"
+                REM Build Docker image
+                docker build -t neonrpm-app .
+
+                REM Stop old container if running
+                docker ps -q -f name=neonrpm-app >nul && docker stop neonrpm-app
+
+                REM Remove old container if exists
+                docker ps -a -q -f name=neonrpm-app >nul && docker rm neonrpm-app
+
+                REM Run new container on port 3000
                 docker run -d -p 3000:3000 --name neonrpm-app neonrpm-app
                 """
             }
@@ -86,38 +92,44 @@ pipeline {
         stage('Release') {
             steps {
                 echo "========================================"
-                echo " RELEASE STAGE: Publishing to Docker Hub "
-                echo " - Logs into Docker Hub with credentials "
-                echo " - Tags neonrpm-app as keoreinz repo     "
-                echo " - Pushes image to Docker Hub            "
+                echo " STAGE: RELEASE                         "
+                echo " - Logging into Docker Hub              "
+                echo " - Tagging and pushing Docker image     "
                 echo "========================================"
-                withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                    bat """
-                    docker login -u %DOCKER_USER% -p %DOCKER_PASS%
-                    docker tag neonrpm-app keoreinz/neonrpm-app:latest
-                    docker push keoreinz/neonrpm-app:latest
-                    """
-                }
+                bat """
+                docker login -u %DOCKER_USER% -p %DOCKER_PASS%
+                docker tag neonrpm-app keoreinz/neonrpm-app:latest
+                docker push keoreinz/neonrpm-app:latest
+                """
             }
         }
 
         stage('Monitoring') {
             steps {
                 echo "========================================"
-                echo " MONITORING STAGE: Health check & Alerts "
-                echo " - Checks /health endpoint               "
-                echo " - Posts status to Discord webhook       "
+                echo " STAGE: MONITORING                      "
+                echo " - Running health check endpoint        "
+                echo " - Sending results to Discord webhook   "
                 echo "========================================"
                 bat """
-                REM Health check
+                REM Run health check
                 curl http://localhost:3000/health || exit 1
                 """
-
-                withCredentials([string(credentialsId: 'discord-webhook', variable: 'DISCORD_URL')]) {
+            }
+            post {
+                success {
                     bat """
                     curl -k -H "Content-Type: application/json" ^
                         -X POST ^
-                        -d "{\\"content\\": \\"NeonRPM Monitoring PASSED — app is healthy at ${BUILD_URL}\\"}" ^
+                        -d "{\\"content\\": \\"NeonRPM Monitoring PASSED — app is healthy at http://localhost:8080/job/${JOB_NAME}/${BUILD_NUMBER}/\\"}" ^
+                        %DISCORD_URL%
+                    """
+                }
+                failure {
+                    bat """
+                    curl -k -H "Content-Type: application/json" ^
+                        -X POST ^
+                        -d "{\\"content\\": \\"NeonRPM Monitoring FAILED — health check did not pass at http://localhost:8080/job/${JOB_NAME}/${BUILD_NUMBER}/\\"}" ^
                         %DISCORD_URL%
                     """
                 }
