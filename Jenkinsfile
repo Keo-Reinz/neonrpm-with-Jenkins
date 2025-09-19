@@ -55,6 +55,20 @@ pipeline {
       }
     }
 
+    stage('Release') {
+      steps {
+        echo "Pushing Docker image to Docker Hub"
+        withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+            bat """
+            docker login -u %DOCKER_USER% -p %DOCKER_PASS%
+            docker tag neonrpm-app keoreinz/neonrpm-app:latest
+            docker push keoreinz/neonrpm-app:latest
+            """
+          }
+        }
+      }
+
+
 
 
     stage('Monitoring') {
