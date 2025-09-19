@@ -1,5 +1,6 @@
 node_modules/
-*.log
 Backup files/
-*.sqlite
+*.log
 *.env
+*.sqlite
+*.db
