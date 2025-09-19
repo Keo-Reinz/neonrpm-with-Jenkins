@@ -32,7 +32,7 @@ app.use(express.static('Login_html'));
 // ==================== Session and Route Access Control ====================
 // This blocks access to protected routes unless logged in or on specific public pages
 app.use((req, res, next) => {
-  const allowed = ['/login', '/login.html', '/register', '/register.html'];
+  const allowed = ['/login', '/login.html', '/register', '/register.html', '/health'];
   if (req.session.loggedIn || allowed.includes(req.path)) {
     return next();
   }
