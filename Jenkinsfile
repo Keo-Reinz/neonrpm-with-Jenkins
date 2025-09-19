@@ -52,15 +52,21 @@ pipeline {
         REM Run new container, expose port 3000
         docker run -d -p 3000:3000 --name neonrpm-app neonrpm-app
         """
-        }
+      }
     }
 
 
 
     stage('Monitoring') {
       steps {
-        echo 'Monitoring stage placeholder - e.g., curl health check'
-        // bat 'curl http://localhost:3000/index.html'
+        echo "Checking if app is healthy"
+        bat """
+        REM Wait a few seconds to let the container start
+        timeout /t 5 >nul
+
+        REM Check the /health endpoint
+        curl http://localhost:3000/health || exit 1
+        """
       }
     }
   }
