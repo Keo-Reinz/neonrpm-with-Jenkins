@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../index'); // Import your Express app
+const app = require('../index'); // Import Express app
 
 describe('NeonRPM basic routes', () => {
   // Health check route
