@@ -11,11 +11,14 @@ if (Object.keys(vulns).length === 0) {
   report += `No vulnerabilities found.\n`;
 } else {
   for (const [pkg, vuln] of Object.entries(vulns)) {
+    const details = Array.isArray(vuln.via) && typeof vuln.via[0] === 'object' ? vuln.via[0] : null;
+
     report += `## Package: ${pkg}\n`;
     report += `- **Severity:** ${vuln.severity}\n`;
-    report += `- **Issue:** ${vuln.title}\n`;
-    report += `- **Path:** ${vuln.via.map(v => (v.source || v.name)).join(' → ')}\n`;
-    report += `- **Fix Available:** ${vuln.isFixAvailable ? 'Yes' : 'No'}\n\n`;
+    report += `- **Issue:** ${details ? details.title : 'N/A'}\n`;
+    report += `- **CWE:** ${details && details.cwe ? details.join(', ') : 'N/A'}\n`;
+    report += `- **Advisory URL:** ${details && details.url ? details.url : 'N/A'}\n`;
+    report += `- **Fix Available:** ${vuln.fixAvailable ? 'Yes' : 'No'}\n\n`;
   }
 }
 
