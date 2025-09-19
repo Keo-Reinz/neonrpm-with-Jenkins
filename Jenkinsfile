@@ -40,13 +40,21 @@ pipeline {
       steps {
         echo "Building and running Docker container"
         bat """
+        REM Build Docker image
         docker build -t neonrpm-app .
-        docker stop neonrpm-app || true
-        docker rm neonrpm-app || true
+
+        REM Stop container if running
+        docker ps -q -f name=neonrpm-app >nul && docker stop neonrpm-app
+
+        REM Remove container if exists
+        docker ps -a -q -f name=neonrpm-app >nul && docker rm neonrpm-app
+
+        REM Run new container, expose port 3000
         docker run -d -p 3000:3000 --name neonrpm-app neonrpm-app
         """
-      }
+        }
     }
+
 
 
     stage('Monitoring') {
